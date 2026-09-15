@@ -160,6 +160,16 @@
     transition:background .15s ease, color .15s ease, border-color .15s ease;
   }
   .add-btn.added{background:var(--fern); color:var(--white); border-color:var(--fern);}
+  .qty-stepper{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:auto; border:1.5px solid var(--fern); border-radius:3px; overflow:hidden;
+  }
+  .qty-stepper button{
+    background:var(--fern); color:var(--white); border:none; width:34px; height:34px;
+    font-size:1rem; font-weight:700; cursor:pointer; font-family:inherit; line-height:1;
+  }
+  .qty-stepper button:hover{background:var(--fern-deep);}
+  .qty-stepper .qty-num{font-size:.9rem; font-weight:600; color:var(--ink);}
 
   #cart-bar{
     position:sticky; bottom:16px; z-index:10;
@@ -179,6 +189,12 @@
   #cart-review .title{font-size:1.05rem; font-weight:600; margin-bottom:10px; font-family:'Fraunces',serif; color:var(--ink);}
   #cart-items div{padding:6px 0; border-bottom:1px solid var(--line); font-size:.9rem; color:var(--ink-soft);}
   #cart-items div:last-child{border-bottom:none;}
+  .cart-line{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+  .cart-line .remove-line{
+    background:none; border:none; color:var(--ink-soft); font-size:.8rem; text-decoration:underline;
+    cursor:pointer; font-family:inherit; padding:0; white-space:nowrap;
+  }
+  .cart-line .remove-line:hover{color:var(--fern-deep);}
 
   /* --- Shared dark form block --- */
   .form-block{
@@ -315,7 +331,7 @@
         <button id="review-btn" type="button">Review order</button>
       </div>
 
-      <div id="cart-review">
+      <div id="cart-review" style="display:none;">
         <div class="title">Your order</div>
         <div id="cart-items"></div>
       </div>
@@ -624,7 +640,12 @@ function renderGrid(){
       <div class="card-name">${p.name}</div>
       <div class="card-price">Price TBC</div>
       ${hasVariants ? `<select class="flavour" data-flavour-id="${p.id}">${p.variants.map(v=>`<option value="${v}" ${selectedFlavour[p.id]===v?'selected':''}>${v}</option>`).join('')}</select>` : ''}
-      <button class="add-btn${qty?' added':''}" data-id="${p.id}" type="button">${qty ? 'Added ('+qty+')' : 'Add to order'}</button>
+      ${qty ? `
+      <div class="qty-stepper">
+        <button type="button" data-decrement-id="${p.id}" aria-label="Remove one">&minus;</button>
+        <span class="qty-num">${qty}</span>
+        <button type="button" data-increment-id="${p.id}" aria-label="Add one">+</button>
+      </div>` : `<button class="add-btn" data-id="${p.id}" type="button">Add to order</button>`}
     </div>
   `}).join('');
 
@@ -643,19 +664,54 @@ function renderGrid(){
     renderGrid();
     updateCartBar();
   });
+
+  gridEl.querySelectorAll('button[data-increment-id]').forEach(b => b.onclick = () => {
+    const id = b.dataset.incrementId;
+    const key = cartKey(id);
+    if (cart[key]) { cart[key].qty += 1; renderGrid(); updateCartBar(); }
+  });
+
+  gridEl.querySelectorAll('button[data-decrement-id]').forEach(b => b.onclick = () => {
+    const id = b.dataset.decrementId;
+    const key = cartKey(id);
+    if (cart[key]) {
+      cart[key].qty -= 1;
+      if (cart[key].qty <= 0) delete cart[key];
+      renderGrid();
+      updateCartBar();
+    }
+  });
 }
 
 function updateCartBar(){
   const total = Object.values(cart).reduce((a,c)=>a+c.qty,0);
   cartCount.textContent = total;
   cartBar.style.display = total > 0 ? 'flex' : 'none';
+  if (cartReview.style.display !== 'none') renderCartReview();
+}
+
+function renderCartReview(){
+  const entries = Object.entries(cart);
+  cartItemsEl.innerHTML = entries.map(([key,c]) => `
+    <div class="cart-line">
+      <span>${c.flavour ? `${c.name} (${c.flavour})` : c.name} x${c.qty}</span>
+      <button type="button" class="remove-line" data-remove-key="${key}">Remove</button>
+    </div>
+  `).join('');
+  const lines = entries.map(([,c]) => c.flavour ? `${c.name} (${c.flavour}) x${c.qty}` : `${c.name} x${c.qty}`);
+  productsField.value = lines.join(', ');
+
+  cartItemsEl.querySelectorAll('button[data-remove-key]').forEach(b => b.onclick = () => {
+    delete cart[b.dataset.removeKey];
+    renderGrid();
+    updateCartBar();
+    renderCartReview();
+  });
 }
 
 reviewBtn.onclick = () => {
   cartReview.style.display = cartReview.style.display === 'none' ? 'block' : 'none';
-  const lines = Object.values(cart).map(c => c.flavour ? `${c.name} (${c.flavour}) x${c.qty}` : `${c.name} x${c.qty}`);
-  cartItemsEl.innerHTML = lines.map(l => `<div>${l}</div>`).join('');
-  productsField.value = lines.join(', ');
+  renderCartReview();
 };
 
 renderFilters();
