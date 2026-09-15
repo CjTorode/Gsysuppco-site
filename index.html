@@ -137,6 +137,11 @@
     background:var(--white); border:1px solid var(--line); border-radius:4px;
     padding:16px; display:flex; flex-direction:column;
   }
+  .card-photo{
+    width:100%; aspect-ratio:1/1; border-radius:3px; background:var(--paper-2);
+    margin-bottom:10px; overflow:hidden; display:flex; align-items:center; justify-content:center;
+  }
+  .card-photo img{width:100%; height:100%; object-fit:cover;}
   .card-cat{
     font-size:.72rem; font-weight:700; letter-spacing:.02em; color:var(--fern-deep);
     margin-bottom:6px;
@@ -556,6 +561,20 @@ const products = [
   {id:53,name:'MyProtein Glutamine',cat:'Recovery'},
   {id:54,name:'Applied Nutrition ABE Recovery',cat:'Recovery'},
   {id:55,name:'Chemical Warfare Recovery',cat:'Recovery'},
+  {id:56,name:'MyProtein Clear Whey Isolate',cat:'Protein',variants:['Orange Mango','Vimto','Strawberry Kiwi','Raspberry Lemonade'],images:{
+    'Orange Mango':'images/clear-whey-isolate-orange-mango.png',
+    'Vimto':'images/clear-whey-isolate-vimto.png',
+    'Strawberry Kiwi':'images/clear-whey-isolate-strawberry-kiwi.png',
+    'Raspberry Lemonade':'images/clear-whey-isolate-raspberry-lemonade.png'
+  }},
+  {id:57,name:'MyProtein Clear Whey Protein',cat:'Protein',variants:['Watermelon','Tropical Dragonfruit','Pink Grapefruit','Mojito','Cranberry & Raspberry','Bitter Lemon'],images:{
+    'Watermelon':'images/clear-whey-protein-watermelon.png',
+    'Tropical Dragonfruit':'images/clear-whey-protein-tropical-dragonfruit.png',
+    'Pink Grapefruit':'images/clear-whey-protein-pink-grapefruit.png',
+    'Mojito':'images/clear-whey-protein-mojito.png',
+    'Cranberry & Raspberry':'images/clear-whey-protein-cranberry-raspberry.png',
+    'Bitter Lemon':'images/clear-whey-protein-bitter-lemon.png'
+  }},
 ];
 
 const cats = ['All','Protein','Creatine','Pre-Workout','Energy','Amino/BCAA','Vitamins','Weight Mgmt','Mass Gainers','Snacks & Bars','Recovery'];
@@ -589,8 +608,10 @@ function renderGrid(){
     if (hasVariants && !selectedFlavour[p.id]) selectedFlavour[p.id] = p.variants[0];
     const key = cartKey(p.id);
     const qty = cart[key] ? cart[key].qty : 0;
+    const photo = p.images ? (p.images[selectedFlavour[p.id]] || Object.values(p.images)[0]) : p.image;
     return `
     <div class="card">
+      ${photo ? `<div class="card-photo"><img src="${photo}" alt="${p.name}${hasVariants ? ' - ' + selectedFlavour[p.id] : ''}" loading="lazy"></div>` : ''}
       <div class="card-cat">${catIcons[p.cat]}</div>
       <div class="card-name">${p.name}</div>
       <div class="card-price">Price TBC</div>
