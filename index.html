@@ -522,23 +522,23 @@ const catIcons = {
 };
 
 const products = [
-  {id:1,name:'Applied Nutrition Critical Whey',cat:'Protein',variants:['Chocolate','Vanilla','Strawberry','Salted Caramel','Banana Strawberry Smoothie'],images:{
+  {id:1,name:'Applied Nutrition Critical Whey',cat:'Protein',price:53,variants:['Chocolate','Vanilla','Strawberry','Salted Caramel','Banana Strawberry Smoothie'],images:{
     'Banana Strawberry Smoothie':'images/critical-whey-banana-strawberry-smoothie.png'
   }},
-  {id:3,name:'Optimum Nutrition Gold Standard Whey',cat:'Protein',variants:['Double Rich Chocolate','Vanilla Ice Cream','Banana Cream']},
+  {id:3,name:'Optimum Nutrition Gold Standard Whey',cat:'Protein',variants:['Double Rich Chocolate','Vanilla Ice Cream','Banana Cream'],price:42},
   {id:5,name:'MyProtein Impact Whey Isolate',cat:'Protein'},
-  {id:7,name:'Grenade Protein Bar (Carb Killa)',cat:'Snacks & Bars',variants:['Chocolate Chip Salted Caramel','White Chocolate Cookie','Chocolate Mint','Birthday Cake','Caramel Chaos','Chocolate Chip Cookie Dough','Dark Choc Mint','Dark Chocolate Raspberry','Oreo','Oreo White','Peanut Nutter','White Chocolate Salted Peanut','Fudged Up','Jaffa Quake','Lemon Cheesecake']},
-  {id:8,name:"Barebells Protein Bar",cat:'Snacks & Bars',variants:['Caramel Cashew','Cookies & Cream','Salty Peanut','Hazelnut & Nougat','Peanut Butter','White Chocolate Almond','White Chocolate Salty Peanut']},
-  {id:10,name:'Mars Hi-Protein Bar',cat:'Snacks & Bars'},
-  {id:11,name:'Snickers Hi-Protein Bar',cat:'Snacks & Bars'},
+  {id:7,name:'Grenade Protein Bar (Carb Killa)',cat:'Snacks & Bars',variants:['Chocolate Chip Salted Caramel','White Chocolate Cookie','Chocolate Mint','Birthday Cake','Caramel Chaos','Chocolate Chip Cookie Dough','Dark Choc Mint','Dark Chocolate Raspberry','Oreo','Oreo White','Peanut Nutter','White Chocolate Salted Peanut','Fudged Up','Jaffa Quake','Lemon Cheesecake'],price:26},
+  {id:8,name:"Barebells Protein Bar",cat:'Snacks & Bars',variants:['Caramel Cashew','Cookies & Cream','Salty Peanut','Hazelnut & Nougat','Peanut Butter','White Chocolate Almond','White Chocolate Salty Peanut'],price:26},
+  {id:10,name:'Mars Hi-Protein Bar',cat:'Snacks & Bars',price:28},
+  {id:11,name:'Snickers Hi-Protein Bar',cat:'Snacks & Bars',price:28},
   {id:12,name:'Nutramino Protein Bar',cat:'Snacks & Bars'},
   {id:15,name:'Muscle Moose Protein Pudding',cat:'Snacks & Bars'},
   {id:17,name:"Lenny & Larry's Protein Cookie",cat:'Snacks & Bars'},
-  {id:18,name:'MyProtein Creatine Monohydrate',cat:'Creatine'},
-  {id:19,name:'Applied Nutrition Creatine Monohydrate',cat:'Creatine'},
+  {id:18,name:'MyProtein Creatine Monohydrate',cat:'Creatine',price:30},
+  {id:19,name:'Applied Nutrition Creatine Monohydrate',cat:'Creatine',price:27},
   {id:21,name:'Optimum Nutrition Micronised Creatine',cat:'Creatine'},
   {id:23,name:'Applied Nutrition ABE Pre-Workout',cat:'Pre-Workout',variants:['Fruit Punch','Blue Raspberry','Cherry Cola','White Peach']},
-  {id:27,name:'BSN N.O.-Xplode',cat:'Pre-Workout'},
+  {id:27,name:'BSN N.O.-Xplode',cat:'Pre-Workout',price:30},
   {id:30,name:'NOCCO BCAA Drink',cat:'Energy',variants:['Caribbean','Apple','Passion Fruit','Blueberry']},
   {id:31,name:'Wow Hydrate',cat:'Energy',variants:['Blue Raspberry','Pink Lemonade','Watermelon']},
   {id:32,name:'Vitamin Well',cat:'Energy',variants:['Defence','Reload','Awake']},
@@ -593,6 +593,12 @@ const products = [
   {id:59,name:'Applied Nutrition Creatine + Hydration',cat:'Creatine',variants:['Blue Raspberry'],images:{
     'Blue Raspberry':'images/creatine-hydration-blue-raspberry.png'
   }},
+  {id:60,name:'Per4m Advanced Whey Protein',cat:'Protein',price:33,variants:['Apple Strudel','Baklava','Banana Creme','Birthday Cake','Blueberry Muffin','Caramel Biscuit','Carrot Cake','Cereal Milk','Cherry Bakewell','Chocolate & Raspberry','Chocolate Brownie Batter','Chocolate Caramel',"Chocolate Eggs'plosion",'Chocolate Mochaccino','Chocolate Orange','Chocolate Peanut Butter','Chocolate Pistachio','Chocotella','Cinnamon Donut','Coconut Creme','Cookie Dough','Cookies N Creme','Double Chocolate','Dubai Chocolate','Fluffy Marshmallow','French Toast Maple Swirl','Jammy Biscuit','Key Lime Pie','Lemon Cheesecake','Minty Chocolate','Neapolitan Ice Cream','Peanut Butter & Jelly','Pumpkin Spiced Latte','Raspberry White Chocolate','Red Velvet Cake','Salted Caramel','Smores','Sticky Toffee','Strawberry Creme','Sweet Salty Popcorn','Unflavoured','Vanilla Creme','White Chocolate','White Chocolate Hazelnut']},
+  {id:61,name:"Lenny & Larry's The Complete Cookie",cat:'Snacks & Bars',price:28,variants:['Birthday Cake','Chocolate Chip','Choc-O-Mint','Double Chocolate','Lemon Poppy Seed','Oatmeal Raisin','Peanut Butter','Peanut Butter Chocolate Chip','Snickerdoodle','White Chocolaty Macadamia']},
+  {id:62,name:'3D Energy Drink',cat:'Energy',price:25,variants:['Blue - Blueberry Mist','Citrus Frost','Cucumber Melon','Liberty Pop','Purple - Watermelon Grape','Silver - Strawberry Lemonade','Spicy Mango']},
+  {id:63,name:'Applied Nutrition ABE Ultimate Pre-Workout',cat:'Pre-Workout',price:26,variants:['White','Baddy Berry','Bubblegum Crush','Candy Ice Blast','Cherry Cola','Cool Watermelon','Energy','Fruit Punch','Icy Blue Raz','Slush Puppie','Slush Puppie Twisted Citrus','Sour Apple','Sour Gummy Bear','Strawberry Mojito','Tropical']},
+  {id:64,name:'Per4m Protein Pancakes',cat:'Snacks & Bars',price:22,variants:['Blueberry Muffin','Caramel Biscuit','Chocolate Chip','Cookies N Cream']},
+  {id:65,name:'Muscle Moose Protein Pancakes',cat:'Snacks & Bars',price:15,variants:['Golden Syrup']},
 ];
 
 const cats = ['All','Protein','Creatine','Pre-Workout','Energy','Amino/BCAA','Vitamins','Weight Mgmt','Mass Gainers','Snacks & Bars','Recovery'];
@@ -632,7 +638,7 @@ function renderGrid(){
       ${photo ? `<div class="card-photo"><img src="${photo}" alt="${p.name}${hasVariants ? ' - ' + selectedFlavour[p.id] : ''}" loading="lazy"></div>` : ''}
       <div class="card-cat">${catIcons[p.cat]}</div>
       <div class="card-name">${p.name}</div>
-      <div class="card-price">Price TBC</div>
+      <div class="card-price">${p.price ? '£'+p.price.toFixed(2) : 'Price TBC'}</div>
       ${hasVariants ? `<select class="flavour" data-flavour-id="${p.id}">${p.variants.map(v=>`<option value="${v}" ${selectedFlavour[p.id]===v?'selected':''}>${v}</option>`).join('')}</select>` : ''}
       ${qty ? `
       <div class="qty-stepper">
