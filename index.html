@@ -699,6 +699,9 @@ function renderCartReview(){
 reviewBtn.onclick = () => {
   cartReview.style.display = cartReview.style.display === 'none' ? 'block' : 'none';
   renderCartReview();
+  if (cartReview.style.display === 'block') {
+    cartReview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 };
 
 renderFilters();
