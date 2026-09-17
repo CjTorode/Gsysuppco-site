@@ -528,10 +528,10 @@ const products = [
   {id:3,name:'Optimum Nutrition Gold Standard Whey',cat:'Protein',variants:['Double Rich Chocolate','Vanilla Ice Cream','Banana Cream'],price:42},
   {id:7,name:'Grenade Protein Bar (Carb Killa)',cat:'Snacks & Bars',variants:['Chocolate Chip Salted Caramel','White Chocolate Cookie','Chocolate Mint','Birthday Cake','Caramel Chaos','Chocolate Chip Cookie Dough','Dark Choc Mint','Dark Chocolate Raspberry','Oreo','Oreo White','Peanut Nutter','White Chocolate Salted Peanut','Fudged Up','Jaffa Quake','Lemon Cheesecake'],price:26},
   {id:8,name:"Barebells Protein Bar",cat:'Snacks & Bars',variants:['Caramel Cashew','Cookies & Cream','Salty Peanut','Hazelnut & Nougat','Peanut Butter','White Chocolate Almond','White Chocolate Salty Peanut'],price:26},
-  {id:10,name:'Mars Hi-Protein Bar',cat:'Snacks & Bars',price:28},
-  {id:11,name:'Snickers Hi-Protein Bar',cat:'Snacks & Bars',price:28},
-  {id:18,name:'MyProtein Creatine Monohydrate',cat:'Creatine',price:30},
-  {id:19,name:'Applied Nutrition Creatine Monohydrate',cat:'Creatine',price:27},
+  {id:10,name:'Mars Hi-Protein Bar',cat:'Snacks & Bars',price:28,variants:['Orange Smash','Original','Salted Caramel','White Chocolate']},
+  {id:11,name:'Snickers Hi-Protein Bar',cat:'Snacks & Bars',price:28,variants:['Crispy','Peanut','Dark Chocolate','Hazelnut Milk Chocolate','Original','White']},
+  {id:18,name:'MyProtein Creatine Monohydrate',cat:'Creatine',sizes:{'1kg':30,'500g':22,'250g':13}},
+  {id:19,name:'Applied Nutrition Creatine Monohydrate',cat:'Creatine',sizes:{'250g':11,'500g':22,'1kg':27}},
   {id:21,name:'Optimum Nutrition Micronised Creatine',cat:'Creatine',price:29},
   {id:27,name:'BSN N.O.-Xplode',cat:'Pre-Workout',price:30},
   {id:30,name:'NOCCO BCAA Drink',cat:'Energy',price:21,variants:['Caribbean','Apple','Passion Fruit','Blueberry']},
@@ -586,12 +586,14 @@ const products = [
   {id:70,name:'Per4m Creatine',cat:'Creatine',price:23,variants:['Berry Blast','Blackberry','Blue Raspberry','Cherry Fizz','Fizzy Bubblegum Bottles','Passionfruit','Peach Sweets','Rainbow Candy','Strawberry Lime','Unflavoured']},
   {id:71,name:'Per4m EAA Xtra',cat:'Amino/BCAA',price:25,variants:['Blackberry','Blue Raspberry','Cherry Fizz','Lemon Lime Splash','Mango Margarita','Orange Burst','Passionfruit','Peach Ice Tea','Rainbow Candy','Strawberry Lime Twist','Tropical Pineapple']},
   {id:72,name:'WOW! Protein',cat:'Protein',price:34,variants:['Blackberry & Vanilla','Orange & Yuzu','White Peach & Apricot']},
+  {id:73,name:'NXT Nutrition KN Protein Water',cat:'Protein',price:26,variants:['Peach','Apple & Blackcurrant','Apple & Cherry','Blue Raspberry','Cola','Ice Burst','Lemon Lime','Orange','Pineapple','Strawberry & Lime','Watermelon']},
 ];
 
 const cats = ['All','Protein','Creatine','Pre-Workout','Energy','Amino/BCAA','Vitamins','Weight Mgmt','Mass Gainers','Snacks & Bars','Recovery'];
 let activeCat = 'All';
 let cart = {};
 let selectedFlavour = {};
+let selectedSize = {};
 
 const filtersEl = document.getElementById('filters');
 const gridEl = document.getElementById('grid');
@@ -609,23 +611,28 @@ function renderFilters(){
 
 function cartKey(id){
   const flavour = selectedFlavour[id];
-  return flavour ? `${id}::${flavour}` : `${id}`;
+  const size = selectedSize[id];
+  return [id, flavour||'', size||''].join('::');
 }
 
 function renderGrid(){
   const list = activeCat==='All' ? products : products.filter(p=>p.cat===activeCat);
   gridEl.innerHTML = list.map(p => {
     const hasVariants = p.variants && p.variants.length;
+    const hasSizes = p.sizes && Object.keys(p.sizes).length;
     if (hasVariants && !selectedFlavour[p.id]) selectedFlavour[p.id] = p.variants[0];
+    if (hasSizes && !selectedSize[p.id]) selectedSize[p.id] = Object.keys(p.sizes)[0];
     const key = cartKey(p.id);
     const qty = cart[key] ? cart[key].qty : 0;
     const photo = p.images ? (p.images[selectedFlavour[p.id]] || Object.values(p.images)[0]) : p.image;
+    const price = hasSizes ? p.sizes[selectedSize[p.id]] : p.price;
     return `
     <div class="card">
       ${photo ? `<div class="card-photo"><img src="${photo}" alt="${p.name}${hasVariants ? ' - ' + selectedFlavour[p.id] : ''}" loading="lazy"></div>` : ''}
       <div class="card-cat">${catIcons[p.cat]}</div>
       <div class="card-name">${p.name}</div>
-      <div class="card-price">${p.price ? '£'+p.price.toFixed(2) : 'Price TBC'}</div>
+      <div class="card-price">${price ? '£'+price.toFixed(2) : 'Price TBC'}</div>
+      ${hasSizes ? `<select class="flavour" data-size-id="${p.id}">${Object.keys(p.sizes).map(s=>`<option value="${s}" ${selectedSize[p.id]===s?'selected':''}>${s}</option>`).join('')}</select>` : ''}
       ${hasVariants ? `<select class="flavour" data-flavour-id="${p.id}">${p.variants.map(v=>`<option value="${v}" ${selectedFlavour[p.id]===v?'selected':''}>${v}</option>`).join('')}</select>` : ''}
       ${qty ? `
       <div class="qty-stepper">
@@ -641,12 +648,18 @@ function renderGrid(){
     renderGrid();
   });
 
+  gridEl.querySelectorAll('select[data-size-id]').forEach(s => s.onchange = (e) => {
+    selectedSize[s.dataset.sizeId] = e.target.value;
+    renderGrid();
+  });
+
   gridEl.querySelectorAll('button[data-id]').forEach(b => b.onclick = () => {
     const id = b.dataset.id;
     const p = products.find(pr=>String(pr.id)===id);
     const flavour = selectedFlavour[id];
+    const size = selectedSize[id];
     const key = cartKey(id);
-    if (!cart[key]) cart[key] = {qty:0,name:p.name,flavour};
+    if (!cart[key]) cart[key] = {qty:0,name:p.name,flavour,size};
     cart[key].qty += 1;
     renderGrid();
     updateCartBar();
@@ -679,13 +692,17 @@ function updateCartBar(){
 
 function renderCartReview(){
   const entries = Object.entries(cart);
+  const label = c => {
+    const bits = [c.flavour, c.size].filter(Boolean);
+    return bits.length ? `${c.name} (${bits.join(', ')})` : c.name;
+  };
   cartItemsEl.innerHTML = entries.map(([key,c]) => `
     <div class="cart-line">
-      <span>${c.flavour ? `${c.name} (${c.flavour})` : c.name} x${c.qty}</span>
+      <span>${label(c)} x${c.qty}</span>
       <button type="button" class="remove-line" data-remove-key="${key}">Remove</button>
     </div>
   `).join('');
-  const lines = entries.map(([,c]) => c.flavour ? `${c.name} (${c.flavour}) x${c.qty}` : `${c.name} x${c.qty}`);
+  const lines = entries.map(([,c]) => `${label(c)} x${c.qty}`);
   productsField.value = lines.join(', ');
 
   cartItemsEl.querySelectorAll('button[data-remove-key]').forEach(b => b.onclick = () => {
