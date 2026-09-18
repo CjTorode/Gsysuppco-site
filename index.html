@@ -525,18 +525,38 @@ const products = [
   {id:1,name:'Applied Nutrition Critical Whey',cat:'Protein',price:53,variants:['Chocolate','Vanilla','Strawberry','Salted Caramel','Banana Strawberry Smoothie'],images:{
     'Banana Strawberry Smoothie':'images/critical-whey-banana-strawberry-smoothie.png'
   }},
-  {id:3,name:'Optimum Nutrition Gold Standard Whey',cat:'Protein',variants:['Double Rich Chocolate','Vanilla Ice Cream','Banana Cream'],price:42},
-  {id:7,name:'Grenade Protein Bar (Carb Killa)',cat:'Snacks & Bars',variants:['Chocolate Chip Salted Caramel','White Chocolate Cookie','Chocolate Mint','Birthday Cake','Caramel Chaos','Chocolate Chip Cookie Dough','Dark Choc Mint','Dark Chocolate Raspberry','Oreo','Oreo White','Peanut Nutter','White Chocolate Salted Peanut','Fudged Up','Jaffa Quake','Lemon Cheesecake'],price:26},
-  {id:8,name:"Barebells Protein Bar",cat:'Snacks & Bars',variants:['Caramel Cashew','Cookies & Cream','Salty Peanut','Hazelnut & Nougat','Peanut Butter','White Chocolate Almond','White Chocolate Salty Peanut'],price:26},
-  {id:10,name:'Mars Hi-Protein Bar',cat:'Snacks & Bars',price:28,variants:['Orange Smash','Original','Salted Caramel','White Chocolate']},
-  {id:11,name:'Snickers Hi-Protein Bar',cat:'Snacks & Bars',price:28,variants:['Crispy','Peanut','Dark Chocolate','Hazelnut Milk Chocolate','Original','White']},
-  {id:18,name:'MyProtein Creatine Monohydrate',cat:'Creatine',sizes:{'1kg':30,'500g':22,'250g':13}},
-  {id:19,name:'Applied Nutrition Creatine Monohydrate',cat:'Creatine',sizes:{'250g':11,'500g':22,'1kg':27}},
-  {id:21,name:'Optimum Nutrition Micronised Creatine',cat:'Creatine',price:29},
-  {id:27,name:'BSN N.O.-Xplode',cat:'Pre-Workout',price:30},
-  {id:30,name:'NOCCO BCAA Drink',cat:'Energy',price:21,variants:['Caribbean','Apple','Passion Fruit','Blueberry']},
-  {id:31,name:'Wow Hydrate',cat:'Energy',price:25,variants:['Blue Raspberry','Pink Lemonade','Watermelon','Blackcurrant & Mint','Grapefruit & Lemon','Peach & Passion Fruit']},
-  {id:34,name:'VIT HIT Vitamin Drink',cat:'Energy',price:20,variants:['Perform - Mango & Passionfruit','Boost - Mixed Berry','Lean & Green - Apple & Elderflower','Immunitea - Dragonfruit & Yuzu','Detox - Mandarin & Orange']},
+  {id:3,name:'Optimum Nutrition Gold Standard Whey',cat:'Protein',variants:['Double Rich Chocolate','Vanilla Ice Cream','Banana Cream'],price:42,images:{
+    'Vanilla Ice Cream':'images/gold-standard-whey-vanilla-ice-cream.jpg'
+  }},
+  {id:7,name:'Grenade Protein Bar (Carb Killa)',cat:'Snacks & Bars',variants:['Chocolate Chip Salted Caramel','White Chocolate Cookie','Chocolate Mint','Birthday Cake','Caramel Chaos','Chocolate Chip Cookie Dough','Dark Choc Mint','Dark Chocolate Raspberry','Oreo','Oreo White','Peanut Nutter','White Chocolate Salted Peanut','Fudged Up','Jaffa Quake','Lemon Cheesecake'],price:26,images:{
+    'Oreo':'images/grenade-oreo.jpg'
+  }},
+  {id:8,name:"Barebells Protein Bar",cat:'Snacks & Bars',variants:['Caramel Cashew','Cookies & Cream','Salty Peanut','Hazelnut & Nougat','Peanut Butter','White Chocolate Almond','White Chocolate Salty Peanut'],price:26,images:{
+    'Peanut Butter':'images/barebells-peanut-butter.jpg'
+  }},
+  {id:10,name:'Mars Hi-Protein Bar',cat:'Snacks & Bars',price:28,variants:['Orange Smash','Original','Salted Caramel','White Chocolate'],images:{
+    'Original':'images/mars-hi-protein-original.jpg'
+  }},
+  {id:11,name:'Snickers Hi-Protein Bar',cat:'Snacks & Bars',price:28,variants:['Crispy','Peanut','Dark Chocolate','Hazelnut Milk Chocolate','Original','White'],images:{
+    'Hazelnut Milk Chocolate':'images/snickers-hi-protein-hazelnut-milk-chocolate.jpg'
+  }},
+  {id:18,name:'MyProtein Creatine Monohydrate',cat:'Creatine',sizes:{'1kg':30,'500g':22,'250g':13},image:'images/myprotein-creatine-monohydrate.jpg'},
+  {id:19,name:'Applied Nutrition Creatine Monohydrate',cat:'Creatine',sizes:{'250g':11,'500g':22,'1kg':27},image:'images/applied-nutrition-creatine-monohydrate.jpg'},
+  {id:21,name:'Optimum Nutrition Micronised Creatine',cat:'Creatine',price:29,image:'images/optimum-nutrition-micronised-creatine.jpg'},
+  {id:27,name:'BSN N.O.-Xplode',cat:'Pre-Workout',price:30,image:'images/bsn-no-xplode.jpg'},
+  {id:30,name:'NOCCO BCAA Drink',cat:'Energy',price:21,variants:['Caribbean','Apple','Passion Fruit','Blueberry','Blood Orange'],images:{
+    'Blood Orange':'images/nocco-bcaa-blood-orange.jpg'
+  }},
+  {id:31,name:'Wow Hydrate',cat:'Energy',price:25,variants:['Blue Raspberry','Pink Lemonade','Watermelon','Blackcurrant & Mint','Grapefruit & Lemon','Peach & Passion Fruit'],images:{
+    'Peach & Passion Fruit':'images/wow-hydrate-peach-passion-fruit.jpg'
+  }},
+  {id:34,name:'VIT HIT Vitamin Drink',cat:'Energy',price:20,variants:['Perform - Mango & Passionfruit','Boost - Mixed Berry','Lean & Green - Apple & Elderflower','Immunitea - Dragonfruit & Yuzu','Detox - Mandarin & Orange'],images:{
+    'Perform - Mango & Passionfruit':'images/vit-hit-perform-mango-passionfruit.jpg',
+    'Boost - Mixed Berry':'images/vit-hit-boost-mixed-berry.jpg',
+    'Lean & Green - Apple & Elderflower':'images/vit-hit-lean-green-apple-elderflower.jpg',
+    'Immunitea - Dragonfruit & Yuzu':'images/vit-hit-immunitea-dragonfruit-yuzu.jpg',
+    'Detox - Mandarin & Orange':'images/vit-hit-detox-mandarin-orange.jpg'
+  }},
   {id:37,name:'Applied Nutrition ABE BCAA',cat:'Amino/BCAA',price:18,variants:['Green Apple','Icy Blue Raz','Fruit Burst','Lemon & Lime','Orange & Mango','Pineapple','Watermelon'],images:{
     'Green Apple':'images/abe-bcaa-green-apple.png',
     'Icy Blue Raz':'images/abe-bcaa-icy-blue-raz.png',
@@ -546,9 +566,9 @@ const products = [
     'Pineapple':'images/abe-bcaa-pineapple.png',
     'Watermelon':'images/abe-bcaa-watermelon.png'
   }},
-  {id:40,name:'Vitamin D3',cat:'Vitamins'},
-  {id:41,name:'ZMA',cat:'Vitamins'},
-  {id:42,name:'Vitamin C',cat:'Vitamins'},
+  {id:40,name:'Vitamin D3',cat:'Vitamins',image:'images/vitamin-d3.jpg'},
+  {id:41,name:'ZMA',cat:'Vitamins',image:'images/zma.jpg'},
+  {id:42,name:'Vitamin C',cat:'Vitamins',image:'images/vitamin-c.jpg'},
   {id:49,name:'Applied Nutrition Diet Whey',cat:'Weight Mgmt',variants:['Chocolate Dessert','Strawberry Milkshake','Vanilla Ice Cream'],images:{
     'Chocolate Dessert':'images/diet-whey-chocolate-dessert.png',
     'Strawberry Milkshake':'images/diet-whey-strawberry-milkshake.png',
@@ -574,7 +594,9 @@ const products = [
     'Fruit Candy':'images/abe-energy-fruit-candy.png',
     'Orange Burst':'images/abe-energy-orange-burst.png'
   }},
-  {id:60,name:'Per4m Advanced Whey Protein',cat:'Protein',price:33,variants:['Apple Strudel','Baklava','Banana Creme','Birthday Cake','Blueberry Muffin','Caramel Biscuit','Carrot Cake','Cereal Milk','Cherry Bakewell','Chocolate & Raspberry','Chocolate Brownie Batter','Chocolate Caramel',"Chocolate Eggs'plosion",'Chocolate Mochaccino','Chocolate Orange','Chocolate Peanut Butter','Chocolate Pistachio','Chocotella','Cinnamon Donut','Coconut Creme','Cookie Dough','Cookies N Creme','Double Chocolate','Dubai Chocolate','Fluffy Marshmallow','French Toast Maple Swirl','Jammy Biscuit','Key Lime Pie','Lemon Cheesecake','Minty Chocolate','Neapolitan Ice Cream','Peanut Butter & Jelly','Pumpkin Spiced Latte','Raspberry White Chocolate','Red Velvet Cake','Salted Caramel','Smores','Sticky Toffee','Strawberry Creme','Sweet Salty Popcorn','Unflavoured','Vanilla Creme','White Chocolate','White Chocolate Hazelnut']},
+  {id:60,name:'Per4m Advanced Whey Protein',cat:'Protein',price:33,variants:['Apple Strudel','Baklava','Banana Creme','Birthday Cake','Blueberry Muffin','Caramel Biscuit','Carrot Cake','Cereal Milk','Cherry Bakewell','Chocolate & Raspberry','Chocolate Brownie Batter','Chocolate Caramel',"Chocolate Eggs'plosion",'Chocolate Mochaccino','Chocolate Orange','Chocolate Peanut Butter','Chocolate Pistachio','Chocotella','Cinnamon Donut','Coconut Creme','Cookie Dough','Cookies N Creme','Double Chocolate','Dubai Chocolate','Fluffy Marshmallow','French Toast Maple Swirl','Jammy Biscuit','Key Lime Pie','Lemon Cheesecake','Minty Chocolate','Neapolitan Ice Cream','Peanut Butter & Jelly','Pumpkin Spiced Latte','Raspberry White Chocolate','Red Velvet Cake','Salted Caramel','Smores','Sticky Toffee','Strawberry Creme','Sweet Salty Popcorn','Unflavoured','Vanilla Creme','White Chocolate','White Chocolate Hazelnut'],images:{
+    'Cookies N Creme':'images/per4m-whey-cookies-creme.jpg'
+  }},
   {id:62,name:'3D Energy Drink',cat:'Energy',price:25,variants:['Blue - Blueberry Mist','Citrus Frost','Cucumber Melon','Liberty Pop','Purple - Watermelon Grape','Silver - Strawberry Lemonade','Spicy Mango']},
   {id:63,name:'Applied Nutrition ABE Ultimate Pre-Workout',cat:'Pre-Workout',price:26,variants:['White','Baddy Berry','Bubblegum Crush','Candy Ice Blast','Cherry Cola','Cool Watermelon','Energy','Fruit Punch','Icy Blue Raz','Slush Puppie','Slush Puppie Twisted Citrus','Sour Apple','Sour Gummy Bear','Strawberry Mojito','Tropical']},
   {id:64,name:'Per4m Protein Pancakes',cat:'Snacks & Bars',price:22,variants:['Blueberry Muffin','Caramel Biscuit','Chocolate Chip','Cookies N Cream']},
@@ -585,7 +607,9 @@ const products = [
   {id:69,name:'Per4m Protein Bar',cat:'Snacks & Bars',price:29,variants:['Baklava','Caramel Biscuit','Chocolate Brownie','Chocolate Caramel','Chocolate Peanut Butter','Chocotella','Cookie Dough','Cookies N Creme','Dubai Chocolate','Salted Caramel','Sticky Toffee','White Chocolate Hazelnut','White Chocolate Raspberry']},
   {id:70,name:'Per4m Creatine',cat:'Creatine',price:23,variants:['Berry Blast','Blackberry','Blue Raspberry','Cherry Fizz','Fizzy Bubblegum Bottles','Passionfruit','Peach Sweets','Rainbow Candy','Strawberry Lime','Unflavoured']},
   {id:71,name:'Per4m EAA Xtra',cat:'Amino/BCAA',price:25,variants:['Blackberry','Blue Raspberry','Cherry Fizz','Lemon Lime Splash','Mango Margarita','Orange Burst','Passionfruit','Peach Ice Tea','Rainbow Candy','Strawberry Lime Twist','Tropical Pineapple']},
-  {id:72,name:'WOW! Protein',cat:'Protein',price:34,variants:['Blackberry & Vanilla','Orange & Yuzu','White Peach & Apricot']},
+  {id:72,name:'WOW! Protein',cat:'Protein',price:34,variants:['Blackberry & Vanilla','Orange & Yuzu','White Peach & Apricot'],images:{
+    'Blackberry & Vanilla':'images/wow-protein-blackberry-vanilla.jpg'
+  }},
   {id:73,name:'NXT Nutrition KN Protein Water',cat:'Protein',price:26,variants:['Peach','Apple & Blackcurrant','Apple & Cherry','Blue Raspberry','Cola','Ice Burst','Lemon Lime','Orange','Pineapple','Strawberry & Lime','Watermelon']},
 ];
 
